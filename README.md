@@ -1,5 +1,5 @@
 # App-Generator
- Project Generator for Application with Premake 5.
+Project Generator for Application with Premake 5 (C/C++).
    
 # Description
 Generator to automate the creation of "Console App" application projects for Windows.  
