@@ -1,6 +1,6 @@
 @echo off
-cd "./Premake5" 
+cd "./Windows" 
 call premake5 GeneratorVs2017
 cd "../../../"
-call Project
+call App
 pause

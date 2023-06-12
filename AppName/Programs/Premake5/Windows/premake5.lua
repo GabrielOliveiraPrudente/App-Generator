@@ -1,10 +1,11 @@
 os.chdir('../../../')
 WorkspaceName = path.getbasename(os.getcwd())
-ContentPath   = '"' .. path.getabsolute('Content')  .. '/"'
-ConfigPath    = '"' .. path.getabsolute('Config')   .. '/"'
+ProjectName   = WorkspaceName
+ContentPath   = path.getabsolute('Content')  .. '/'
+ConfigPath    = path.getabsolute('Config')   .. '/'
 
 -- Add Custon Link Path
-function LinkWindowsLibraries()
+function LinkLibraries()
     --links { 'Lib.lib', 'Lib2.lib' }
 end
 
@@ -14,7 +15,7 @@ workspace(WorkspaceName)
     platforms {'Win32', 'Win64'}
     defaultplatform ('Win64')
 
-project(WorkspaceName).group = "Application"
+project(ProjectName).group = "Application"
 
     kind      ('ConsoleApp')
     language  ('C++')
@@ -22,9 +23,9 @@ project(WorkspaceName).group = "Application"
     targetdir ('Binaries/%{cfg.platform}/%{cfg.buildcfg}')
     objdir    ("Intermediate/Build/%{cfg.platform}/%{cfg.buildcfg}")
 
-    defines {'APP_NAME="' .. WorkspaceName .. '"'}
+    defines {'APP_NAME=%{ProjectName}'}
 
-    SourcePath = 'Source/' .. WorkspaceName
+    SourcePath = 'Source/' .. ProjectName
     os.mkdir (SourcePath)
     os.mkdir ('Content')
     os.mkdir ('Config')
@@ -58,40 +59,34 @@ project(WorkspaceName).group = "Application"
     
     filter {'configurations:Release'}
         defines { 'RELEASE_MODE' }
-        defines {'CONTENT_PATH="AppData/Content/"'}
-        defines {'CONFIG_PATH="AppData/Config/"'}
+        defines {'CONTENT_PATH=AppData/Content/'}
+        defines {'CONFIG_PATH=AppData/Config/'}
         optimize 'On'
         symbols  'Off'
 
-        FilesFrom       = path.getabsolute("Content")
-        FileTo          = path.getabsolute("Binaries/%{cfg.platform}/%{cfg.buildcfg}/AppData/Content/")
-        ConfigFilesFrom = path.getabsolute("Config")
-        ConfigFilesTo   = path.getabsolute("Binaries/%{cfg.platform}/%{cfg.buildcfg}/AppData/Config/")
+        ContentFrom       = path.getabsolute("Content")
+        ContentTo         = path.getabsolute("Binaries/%{cfg.platform}/%{cfg.buildcfg}/AppData/Content/")
+        ConfigFilesFrom   = path.getabsolute("Config")
+        ConfigFilesTo     = path.getabsolute("Binaries/%{cfg.platform}/%{cfg.buildcfg}/AppData/Config/")
         postbuildmessage "Copying content to AppData..."
         -- copy a file from the objects directory to the target directory
-        postbuildcommands { "{COPYDIR} %{FilesFrom} %{FileTo}" }
+        postbuildcommands { "{COPYDIR} %{ContentFrom} %{ContentTo}" }
         postbuildcommands { "{COPYDIR} %{ConfigFilesFrom} %{ConfigFilesTo}" }
     
     filter {'platforms:Win32'}
         architecture ('x86')
-        system ('Windows')
         libdirs {'Source/ThirdParty/Libs/Win32/Debug'}
         libdirs {'Source/ThirdParty/Libs/Win32/Release'}
 
     filter {'platforms:Win64'}
         architecture ('x86_64')
-        system ('Windows')
         libdirs {'Source/ThirdParty/Libs/Win64/Debug'}
         libdirs {'Source/ThirdParty/Libs/Win64/Release'}
 
-    filter {'System:Linux'}
-        defines { 'PLATFORM_LINUX' }
-        cppdialect 'gnu++17'
-        
     filter {'System:Windows'}
         defines { 'PLATFORM_WINDOWS' }
         cppdialect 'C++17'
-        LinkWindowsLibraries()
+        LinkLibraries()
 
     filter {}
 
@@ -100,13 +95,13 @@ project(WorkspaceName).group = "Application"
     PROGRAMSPATH = path.getabsolute('Programs')
 
     prebuildmessage ('Start Project Update.')
-    prebuildcommands { "call ../../Project.bat" }
+    prebuildcommands { "call ../../App.bat" }
 
 newaction {
     trigger     = "GeneratorVs2017",
     description = "Install the software",
     execute     = function ()
-        Filename = "../../../Project.bat";
+        Filename = "../../../App.bat";
         Content = SettingsString
         Content = Content:gsub("PROJECTNAME", WorkspaceName)
         Content = Content:gsub("VSVERSION", "vs2017")
@@ -120,7 +115,7 @@ newaction {
     trigger     = "GeneratorVs2019",
     description = "Install the software",
     execute     = function ()
-        Filename = "../../../Project.bat";
+        Filename = "../../../App.bat";
         Content = SettingsString
         Content = Content:gsub("PROJECTNAME", WorkspaceName)
         Content = Content:gsub("VSVERSION", "vs2019")
@@ -134,7 +129,7 @@ newaction {
     trigger     = "GeneratorVs2022",
     description = "Install the software",
     execute     = function ()
-        Filename = "../../../Project.bat";
+        Filename = "../../../App.bat";
         Content = SettingsString
         Content = Content:gsub("PROJECTNAME", WorkspaceName)
         Content = Content:gsub("VSVERSION", "vs2022")

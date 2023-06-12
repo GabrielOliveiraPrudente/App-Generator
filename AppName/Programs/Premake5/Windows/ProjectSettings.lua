@@ -4,13 +4,13 @@ Vs2022Path = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Commo
 
 SettingsString = [[@echo off
 If "%~1" == "run" GOTO RunDebugWin64
-If "%~1" == "run-r" GOTO RunReleaseWin64
+If "%~1" == "run config=release_x64" GOTO RunReleaseWin64
 IF "%~1" == "make" GOTO MakeDebugWin64
-IF "%~1" == "make-r" GOTO MakeReleaseWin64
+IF "%~1" == "make config=release_x64" GOTO MakeReleaseWin64
 
 :Refress
 echo "Project Refresh"
-cd "PROGRAMSPATH/Premake5/Premake5"
+cd "PROGRAMSPATH/Premake5/Windows"
 call premake5 VSVERSION
 cd "../../../"
 GOTO Done
