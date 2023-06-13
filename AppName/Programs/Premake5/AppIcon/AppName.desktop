@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=App Name
+Comment=My App.
+Exec=/home/username/AppFolder/AppName
+Icon=/home/username/AppFolder/AppName/Programs/Premake5/AppIcon/AppIcon.ico
+Terminal=true
+Type=Application
+Categories=Application;
+
+# Copy this after editing to: /home/.local/shared/applications

@@ -2,32 +2,39 @@
 Project Generator for Application with Premake 5 (C/C++).
    
 # Description
-Generator to automate the creation of "Console App" application projects for Windows.  
-The App Icon can be changed in the "Programs\Premake5\AppIcon\AppIcon.ico" folder.  
-When generating the project, folders are created for the use of resources.  
-Config  -> Destined for configuration files.  
-Content -> Destined for asset files Images, Sounds and etc...  
-Source/AppName -> Destined for project source files.  
+Windows and Linux cross-platform project generator to facilitate the creation of applications.  
+After compiling in Release mode, the "Config" and "Content" folders will be copied to the "Binaries/Platform/Relese/AppData" folder to be distributed easily.  
 
 # Generation
-Rename the "AppName" folder to your project name.  
-(Optional) Add an icon in place of the default "Programs/Premake5/AppIcon/AppIcon.ico" icon.  
-Go to the "Programs/Premake5" folder and run the ".bat" file of the desired Visual Studio version.  
+Copy the AppName Folder to another desired location and rename it to the desired app name.  
+Change the Icon if you want in the "Programs/Premake5/AppIcon/AppIcon.ico" folder.  
+Run one of the generators in the "Programs/Premake5" folder and go back to the root folder.  
+In the case of Linux, it is necessary to allow the GMake2.sh file, Click on the file with the right button, go to Properties and check the execute box.  
+  
+After the generation, several folders will be created to help with the organization.  
+Config -> Destined for App configuration files and will be copied in Release mode to the Final Package folder.  
+Content-> Destined for App Resource files Images, Sounds ... and will be copied in Release mode to the Final Package folder.  
+Source/AppName-> Intended for all App code files and is indicated as rais to locate with #include"File.h".  
+Source/ThirdParty-> Intended for storing all libraries used in the App.  
 
 # Macros
 CONFIG_PATH      = Full path of the Config folder.  
 CONTENT_PATH     = Full path of the Content folder.  
+APP_ANAME        = Project name.  
+Note-> All above need to be inside "STR(...)" macro to be converted to String.  
 DEBUG_MODE       = Debug Mode.  
 RELEASE_MODE     = Release Mode.  
-APP_ANAME        = Project name.  
-PLATFORM_WINDOWS = Current Windows platform.
+PLATFORM_WINDOWS = Current Windows platform.  
+PLATFORM_LINUX   = Current Linux platform.
 
-# Note
-It is possible to use Visual Studio Code, but you must have a version of "Visual Studio" or a "Vs Build Tools" tool.  
-To compile and run the project just call the file "Project.bat" in the command line passing the desired parameter.  
-Compile in "Debug-Win64" mode-----> call Project.bat "make".  
-Run     in "Debug-Win64" mode-----> call Project.bat "run".  
-Compile in "Release-Win64" mode --> call Project.bat "make-r".  
-Run     in "Release-Win64" mode --> call Project.bat "run -r".  
-Depending on the mode, the path of the Config and Content folders changes to "Debug = Full Path" and "Release = Path Relative to .exe"  
-In Release Mode all files from the "Config" and "Content" folders will be copied to the ".exe" folder "AppData".
+# Note For Windows
+You must have a version of "Visual Studio" or "Vs Build Tool" installed in the default locations.  
+Commads..  
+./App : Update the Project.  
+./App make : Compile in Debug x64 mode.  
+./App make "config=release_x64" : Compile in Release x64 mode.  
+
+# Note For Linux
+./App : Update the Project.  
+make : Compile in Debug x64 mode.  
+make config=release_x64 : Compile in Release x64 mode.  
