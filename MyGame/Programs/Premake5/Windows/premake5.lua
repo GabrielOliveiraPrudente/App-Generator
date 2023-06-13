@@ -6,7 +6,7 @@ ConfigPath    = path.getabsolute('Config')   .. '/'
 
 -- Add Custon Link Path
 function LinkLibraries()
-    links { 'raylib.lib' }
+    links { 'raylib.lib', 'winmm' }
 end
 
 workspace(WorkspaceName)

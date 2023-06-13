@@ -400,5 +400,5 @@ MyGame/Binaries
 MyGame/Intermediate
 MyGame/App.bat
 MyGame/App.sh
-MyGame/*.sl
+MyGame/*.sln
 MyGame/*.makefile
