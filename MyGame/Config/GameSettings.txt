@@ -1,0 +1,6 @@
+[GameSettings]
+Resolution.X = 800
+Resolution.Y = 600
+TargetFPS = 60
+bFullscreen = FALSE
+WindowName = "MyGame"

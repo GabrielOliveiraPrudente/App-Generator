@@ -7,7 +7,8 @@ ConfigPath    = path.getabsolute('Config')   .. '/'
 -- Add Custon Link Path
 function LinkLibraries()
     --includedirs { 'Source/ThirdParty/Libs/Include/MyLibInclude' }
-    --links { 'Lib.a', 'Lib2.a' }
+    --libdirs {'Source/ThirdParty/Libs/Linux64/Debug'}
+    links { 'raylib' }
 end
 
 workspace(WorkspaceName)
