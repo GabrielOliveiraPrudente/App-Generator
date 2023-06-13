@@ -401,4 +401,4 @@ MyGame/Intermediate
 MyGame/App.bat
 MyGame/App.sh
 MyGame/*.sln
-MyGame/*.makefile
+MyGame/Makefile
