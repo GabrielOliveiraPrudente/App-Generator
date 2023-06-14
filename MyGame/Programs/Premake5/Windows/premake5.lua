@@ -30,10 +30,10 @@ project(ProjectName).group = "Application"
     os.mkdir ('Content')
     os.mkdir ('Config')
     os.mkdir ('Source/ThirdParty/Include')
-    os.mkdir ('Source/ThirdParty/Libs/Win32/Debug')
-    os.mkdir ('Source/ThirdParty/Libs/Win32/Release')
-    os.mkdir ('Source/ThirdParty/Libs/Win64/Debug')
-    os.mkdir ('Source/ThirdParty/Libs/Win64/Release')
+    os.mkdir ('Source/ThirdParty/Libs/Win32/DebugLib')
+    os.mkdir ('Source/ThirdParty/Libs/Win32/ReleaseLib')
+    os.mkdir ('Source/ThirdParty/Libs/Win64/DebugLib')
+    os.mkdir ('Source/ThirdParty/Libs/Win64/ReleaseLib')
 
     includedirs { SourcePath }
     includedirs { 'Source/ThirdParty/Include' }
@@ -75,13 +75,13 @@ project(ProjectName).group = "Application"
     
     filter {'platforms:Win32'}
         architecture ('x86')
-        libdirs {'Source/ThirdParty/Libs/Win32/Debug'}
-        libdirs {'Source/ThirdParty/Libs/Win32/Release'}
+        libdirs {'Source/ThirdParty/Libs/Win32/DebugLib'}
+        libdirs {'Source/ThirdParty/Libs/Win32/ReleaseLib'}
 
     filter {'platforms:Win64'}
         architecture ('x86_64')
-        libdirs {'Source/ThirdParty/Libs/Win64/Debug'}
-        libdirs {'Source/ThirdParty/Libs/Win64/Release'}
+        libdirs {'Source/ThirdParty/Libs/Win64/DebugLib'}
+        libdirs {'Source/ThirdParty/Libs/Win64/ReleaseLib'}
 
     filter {'System:Windows'}
         defines { 'PLATFORM_WINDOWS' }

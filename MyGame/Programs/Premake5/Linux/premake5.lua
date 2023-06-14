@@ -32,10 +32,10 @@ project(ProjectName).group = "Application"
     os.mkdir ('Content')
     os.mkdir ('Config')
     os.mkdir ('Source/ThirdParty/Include')
-    os.mkdir ('Source/ThirdParty/Libs/Linux32/Debug')
-    os.mkdir ('Source/ThirdParty/Libs/Linux32/Release')
-    os.mkdir ('Source/ThirdParty/Libs/Linux64/Debug')
-    os.mkdir ('Source/ThirdParty/Libs/Linux64/Release')
+    os.mkdir ('Source/ThirdParty/Libs/Linux32/DebugLib')
+    os.mkdir ('Source/ThirdParty/Libs/Linux32/ReleaseLib')
+    os.mkdir ('Source/ThirdParty/Libs/Linux64/DebugLib')
+    os.mkdir ('Source/ThirdParty/Libs/Linux64/ReleaseLib')
 
     includedirs { SourcePath }
     includedirs { 'Source/ThirdParty/Include' }
@@ -75,13 +75,13 @@ project(ProjectName).group = "Application"
     
     filter {'platforms:x32'}
         architecture ('x86')
-        libdirs {'Source/ThirdParty/Libs/Linux32/Debug'}
-        libdirs {'Source/ThirdParty/Libs/Linux32/Release'}
+        libdirs {'Source/ThirdParty/Libs/Linux32/DebugLib'}
+        libdirs {'Source/ThirdParty/Libs/Linux32/ReleaseLib'}
 
     filter {'platforms:x64'}
         architecture ('x86_64')
-        libdirs {'Source/ThirdParty/Libs/Linux64/Debug'}
-        libdirs {'Source/ThirdParty/Libs/Linux64/Release'}
+        libdirs {'Source/ThirdParty/Libs/Linux64/DebugLib'}
+        libdirs {'Source/ThirdParty/Libs/Linux64/ReleaseLib'}
 
     filter {'System:Linux'}
         defines { 'PLATFORM_LINUX' }
