@@ -24,6 +24,7 @@ project(ProjectName).group = "Application"
     objdir    ("Intermediate/Build/%{cfg.platform}/%{cfg.buildcfg}")
 
     defines {'APP_NAME=%{ProjectName}'}
+    defines{"PLATFORM_DESKTOP"}
 
     SourcePath = 'Source/' .. ProjectName
     os.mkdir (SourcePath)
