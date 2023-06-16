@@ -8,7 +8,7 @@ ConfigPath    = path.getabsolute('Config')   .. '/'
 function LinkLibraries()
     --includedirs { 'Source/ThirdParty/Libs/Include/MyLibInclude' }
     --libdirs {'Source/ThirdParty/Libs/Linux64/Debug'}
-    links { 'raylib' }
+    links { 'raylib', "pthread", "GL", "m", "dl", "rt", "X11" }
 end
 
 workspace(WorkspaceName)
@@ -26,6 +26,7 @@ project(ProjectName).group = "Application"
     objdir    ("Intermediate/Build/%{cfg.platform}/%{cfg.buildcfg}")
 
     defines {'APP_NAME=%{ProjectName}'}
+    defines{"PLATFORM_DESKTOP"}
 
     SourcePath = 'Source/' .. ProjectName
     os.mkdir (SourcePath)
